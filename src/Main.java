@@ -1,13 +1,37 @@
-public class Main {
+import lombok.*;
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+class CarWithLombok {
+    private String model;
+
+    @EqualsAndHashCode.Include
+    private String brand;
+
+    private int year;
+    private int price;
+    private String color;
+    private int quantity;
+}
+
+class CarDemoWithLombok {
     public static void main(String[] args) {
-        Car car1 = new Car("Car 1", "BMW", 2020, 350000f, "white", 5);
-        Car car2 = new Car("Car 1", "BMW", 2020, 350000f, "white", 5);
 
-        System.out.println(car1);
-        System.out.println(car2);
+        CarWithLombok CarWithLombok1 = new CarWithLombok("Model1", "Mercedes", 2020, 20_000, "white", 5);
+        CarWithLombok CarWithLombok2 = new CarWithLombok("Model2", "Mercedes", 2023, 18_000, "silver", 7);
 
-        System.out.println("Are these objects equal? " + car1.equals(car2));
-        System.out.println("The hashCode of this object 1: " + car1.hashCode());
-        System.out.println("The hashCode of this object 2: " + car2.hashCode());
+        System.out.println(CarWithLombok1);
+        System.out.println(CarWithLombok2);
+        System.out.println(CarWithLombok1.getColor());
+
+        int year = CarWithLombok1.getYear();
+        CarWithLombok1.setColor("black");
+
+        System.out.println("Are these objects equal? " + CarWithLombok1.equals(CarWithLombok2));
+        System.out.println("The HashCode of this object is: " + CarWithLombok2.hashCode());
+        System.out.println("The HashCode of this object is: " + CarWithLombok1.hashCode());
     }
 }
